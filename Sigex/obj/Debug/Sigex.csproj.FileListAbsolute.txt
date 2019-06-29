@@ -98,8 +98,8 @@ C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\bin\Microsoft.Owin.Security.Twi
 C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\obj\Debug\Sigex.csprojAssemblyReference.cache
 C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\obj\Debug\Sigex.csproj.CoreCompileInputs.cache
 C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\obj\Debug\Sigex.csproj.CopyComplete
 C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\obj\Debug\Sigex.dll
 C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\obj\Debug\Sigex.pdb
+C:\Users\abgonzalez\Desktop\Apec\1.0\Sigex\Sigex\obj\Debug\Sigex.csprojAssemblyReference.cache

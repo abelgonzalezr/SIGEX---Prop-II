@@ -4,7 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="46b0f2e205b4405f91397665aee35042" Name="Diagram1" />
+      <Diagram DiagramId="46b0f2e205b4405f91397665aee35042" Name="Diagram1" >
+        <EntityTypeShape EntityType="sigexdbModel.Examan" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="sigexdbModel.preguntasExaman" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="sigexdbModel.FK_Examen_PreguntasExamen" />
+        <EntityTypeShape EntityType="sigexdbModel.TipoPregunta" Width="1.5" PointX="5.875" PointY="1" />
+        <AssociationConnector Association="sigexdbModel.FK_TipoPregunta_PreguntasExamen" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

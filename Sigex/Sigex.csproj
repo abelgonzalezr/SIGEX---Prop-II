@@ -170,8 +170,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExamenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\preguntasExamenController.cs" />
+    <Compile Include="Controllers\TipoPreguntasController.cs" />
+    <Compile Include="Data\Examan.cs">
+      <DependentUpon>sigexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\preguntasExaman.cs">
+      <DependentUpon>sigexDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\sigexDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,6 +195,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>sigexDb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\TipoPregunta.cs">
+      <DependentUpon>sigexDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -282,6 +294,21 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Views\Account\sweetLogin.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\Examen\Delete.cshtml" />
+    <Content Include="Views\Examen\Details.cshtml" />
+    <Content Include="Views\Examen\Edit.cshtml" />
+    <Content Include="Views\Examen\Index.cshtml" />
+    <Content Include="Views\TipoPreguntas\Create.cshtml" />
+    <Content Include="Views\TipoPreguntas\Delete.cshtml" />
+    <Content Include="Views\TipoPreguntas\Details.cshtml" />
+    <Content Include="Views\TipoPreguntas\Edit.cshtml" />
+    <Content Include="Views\TipoPreguntas\Index.cshtml" />
+    <Content Include="Views\preguntasExamen\Create.cshtml" />
+    <Content Include="Views\preguntasExamen\Delete.cshtml" />
+    <Content Include="Views\preguntasExamen\Details.cshtml" />
+    <Content Include="Views\preguntasExamen\Edit.cshtml" />
+    <Content Include="Views\preguntasExamen\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

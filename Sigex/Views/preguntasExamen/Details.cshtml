@@ -1,0 +1,75 @@
+﻿@model Sigex.Data.preguntasExaman
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>preguntasExaman</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RespuestaCorrecta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RespuestaCorrecta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Examan.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Examan.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPregunta.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPregunta.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idpreguntasExamen }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

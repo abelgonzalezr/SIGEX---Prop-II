@@ -4,20 +4,200 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sigexdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="sigexdbModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="sigexdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Examen">
+          <Key>
+            <PropertyRef Name="IdTest" />
+          </Key>
+          <Property Name="IdTest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="preguntasExamen">
+          <Key>
+            <PropertyRef Name="idpreguntasExamen" />
+          </Key>
+          <Property Name="idpreguntasExamen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTest" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="idTipoPregunta" Type="int" Nullable="false" />
+          <Property Name="RespuestaCorrecta" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPregunta">
+          <Key>
+            <PropertyRef Name="IdTipoPregunta" />
+          </Key>
+          <Property Name="IdTipoPregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Examen_PreguntasExamen">
+          <End Role="Examen" Type="Self.Examen" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="preguntasExamen" Type="Self.preguntasExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examen">
+              <PropertyRef Name="IdTest" />
+            </Principal>
+            <Dependent Role="preguntasExamen">
+              <PropertyRef Name="idTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoPregunta_PreguntasExamen">
+          <End Role="TipoPregunta" Type="Self.TipoPregunta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="preguntasExamen" Type="Self.preguntasExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPregunta">
+              <PropertyRef Name="IdTipoPregunta" />
+            </Principal>
+            <Dependent Role="preguntasExamen">
+              <PropertyRef Name="idTipoPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sigexdbModelStoreContainer">
+          <EntitySet Name="Examen" EntityType="Self.Examen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="preguntasExamen" EntityType="Self.preguntasExamen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPregunta" EntityType="Self.TipoPregunta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Examen_PreguntasExamen" Association="Self.FK_Examen_PreguntasExamen">
+            <End Role="Examen" EntitySet="Examen" />
+            <End Role="preguntasExamen" EntitySet="preguntasExamen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoPregunta_PreguntasExamen" Association="Self.FK_TipoPregunta_PreguntasExamen">
+            <End Role="TipoPregunta" EntitySet="TipoPregunta" />
+            <End Role="preguntasExamen" EntitySet="preguntasExamen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sigexdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="sigexdbEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="sigexdbEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Examen" EntityType="sigexdbModel.Examan" />
+          <EntitySet Name="preguntasExamen" EntityType="sigexdbModel.preguntasExaman" />
+          <AssociationSet Name="FK_Examen_PreguntasExamen" Association="sigexdbModel.FK_Examen_PreguntasExamen">
+            <End Role="Examan" EntitySet="Examen" />
+            <End Role="preguntasExaman" EntitySet="preguntasExamen" />
+          </AssociationSet>
+          <EntitySet Name="TipoPreguntas" EntityType="sigexdbModel.TipoPregunta" />
+          <AssociationSet Name="FK_TipoPregunta_PreguntasExamen" Association="sigexdbModel.FK_TipoPregunta_PreguntasExamen">
+            <End Role="TipoPregunta" EntitySet="TipoPreguntas" />
+            <End Role="preguntasExaman" EntitySet="preguntasExamen" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Examan">
+          <Key>
+            <PropertyRef Name="IdTest" />
+          </Key>
+          <Property Name="IdTest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="preguntasExamen" Relationship="sigexdbModel.FK_Examen_PreguntasExamen" FromRole="Examan" ToRole="preguntasExaman" />
+        </EntityType>
+        <EntityType Name="preguntasExaman">
+          <Key>
+            <PropertyRef Name="idpreguntasExamen" />
+          </Key>
+          <Property Name="idpreguntasExamen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTest" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Examan" Relationship="sigexdbModel.FK_Examen_PreguntasExamen" FromRole="preguntasExaman" ToRole="Examan" />
+          <Property Name="idTipoPregunta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoPregunta" Relationship="sigexdbModel.FK_TipoPregunta_PreguntasExamen" FromRole="preguntasExaman" ToRole="TipoPregunta" />
+          <Property Name="RespuestaCorrecta" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Examen_PreguntasExamen">
+          <End Type="sigexdbModel.Examan" Role="Examan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sigexdbModel.preguntasExaman" Role="preguntasExaman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examan">
+              <PropertyRef Name="IdTest" />
+            </Principal>
+            <Dependent Role="preguntasExaman">
+              <PropertyRef Name="idTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TipoPregunta">
+          <Key>
+            <PropertyRef Name="IdTipoPregunta" />
+          </Key>
+          <Property Name="IdTipoPregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="preguntasExamen" Relationship="sigexdbModel.FK_TipoPregunta_PreguntasExamen" FromRole="TipoPregunta" ToRole="preguntasExaman" />
+        </EntityType>
+        <Association Name="FK_TipoPregunta_PreguntasExamen">
+          <End Type="sigexdbModel.TipoPregunta" Role="TipoPregunta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sigexdbModel.preguntasExaman" Role="preguntasExaman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPregunta">
+              <PropertyRef Name="IdTipoPregunta" />
+            </Principal>
+            <Dependent Role="preguntasExaman">
+              <PropertyRef Name="idTipoPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="sigexdbModelStoreContainer" CdmEntityContainer="sigexdbEntities" />
+        <EntityContainerMapping StorageEntityContainer="sigexdbModelStoreContainer" CdmEntityContainer="sigexdbEntities" >
+          <EntitySetMapping Name="Examen">
+            <EntityTypeMapping TypeName="sigexdbModel.Examan">
+              <MappingFragment StoreEntitySet="Examen">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preguntasExamen">
+            <EntityTypeMapping TypeName="sigexdbModel.preguntasExaman">
+              <MappingFragment StoreEntitySet="preguntasExamen">
+                <ScalarProperty Name="RespuestaCorrecta" ColumnName="RespuestaCorrecta" />
+                <ScalarProperty Name="idTipoPregunta" ColumnName="idTipoPregunta" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idTest" ColumnName="idTest" />
+                <ScalarProperty Name="idpreguntasExamen" ColumnName="idpreguntasExamen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPreguntas">
+            <EntityTypeMapping TypeName="sigexdbModel.TipoPregunta">
+              <MappingFragment StoreEntitySet="TipoPregunta">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTipoPregunta" ColumnName="IdTipoPregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

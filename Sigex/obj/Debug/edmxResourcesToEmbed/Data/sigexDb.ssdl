@@ -1,4 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="sigexdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="sigexdbModelStoreContainer" />
+<Schema Namespace="sigexdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Examen">
+    <Key>
+      <PropertyRef Name="IdTest" />
+    </Key>
+    <Property Name="IdTest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="preguntasExamen">
+    <Key>
+      <PropertyRef Name="idpreguntasExamen" />
+    </Key>
+    <Property Name="idpreguntasExamen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTest" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Valor" Type="varchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="idTipoPregunta" Type="int" Nullable="false" />
+    <Property Name="RespuestaCorrecta" Type="varchar" MaxLength="80" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoPregunta">
+    <Key>
+      <PropertyRef Name="IdTipoPregunta" />
+    </Key>
+    <Property Name="IdTipoPregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Examen_PreguntasExamen">
+    <End Role="Examen" Type="Self.Examen" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="preguntasExamen" Type="Self.preguntasExamen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Examen">
+        <PropertyRef Name="IdTest" />
+      </Principal>
+      <Dependent Role="preguntasExamen">
+        <PropertyRef Name="idTest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TipoPregunta_PreguntasExamen">
+    <End Role="TipoPregunta" Type="Self.TipoPregunta" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="preguntasExamen" Type="Self.preguntasExamen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPregunta">
+        <PropertyRef Name="IdTipoPregunta" />
+      </Principal>
+      <Dependent Role="preguntasExamen">
+        <PropertyRef Name="idTipoPregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sigexdbModelStoreContainer">
+    <EntitySet Name="Examen" EntityType="Self.Examen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="preguntasExamen" EntityType="Self.preguntasExamen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoPregunta" EntityType="Self.TipoPregunta" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Examen_PreguntasExamen" Association="Self.FK_Examen_PreguntasExamen">
+      <End Role="Examen" EntitySet="Examen" />
+      <End Role="preguntasExamen" EntitySet="preguntasExamen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipoPregunta_PreguntasExamen" Association="Self.FK_TipoPregunta_PreguntasExamen">
+      <End Role="TipoPregunta" EntitySet="TipoPregunta" />
+      <End Role="preguntasExamen" EntitySet="preguntasExamen" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

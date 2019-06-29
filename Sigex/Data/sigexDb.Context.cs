@@ -25,5 +25,8 @@ namespace Sigex.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Examan> Examen { get; set; }
+        public virtual DbSet<preguntasExaman> preguntasExamen { get; set; }
+        public virtual DbSet<TipoPregunta> TipoPreguntas { get; set; }
     }
 }

@@ -1,4 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="sigexdbModelStoreContainer" CdmEntityContainer="sigexdbEntities" />
+  <EntityContainerMapping StorageEntityContainer="sigexdbModelStoreContainer" CdmEntityContainer="sigexdbEntities">
+    <EntitySetMapping Name="Examen">
+      <EntityTypeMapping TypeName="sigexdbModel.Examan">
+        <MappingFragment StoreEntitySet="Examen">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="preguntasExamen">
+      <EntityTypeMapping TypeName="sigexdbModel.preguntasExaman">
+        <MappingFragment StoreEntitySet="preguntasExamen">
+          <ScalarProperty Name="RespuestaCorrecta" ColumnName="RespuestaCorrecta" />
+          <ScalarProperty Name="idTipoPregunta" ColumnName="idTipoPregunta" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="idTest" ColumnName="idTest" />
+          <ScalarProperty Name="idpreguntasExamen" ColumnName="idpreguntasExamen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPreguntas">
+      <EntityTypeMapping TypeName="sigexdbModel.TipoPregunta">
+        <MappingFragment StoreEntitySet="TipoPregunta">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdTipoPregunta" ColumnName="IdTipoPregunta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping>
